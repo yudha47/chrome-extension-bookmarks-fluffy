@@ -9,7 +9,7 @@
 | Field           | Value                                              |
 |-----------------|----------------------------------------------------|
 | **Project**     | Bookmarks Fluffy                                   |
-| **Version**     | 1.0.0 — Initial Release                           |
+| **Version**     | 1.0.0 — Initial Release                            |
 | **Author**      | yudhaniagara                                       |
 | **Email**       | yudhaniagara27@gmail.com                           |
 | **Threads**     | https://www.threads.com/@yudhaniagara              |
@@ -18,7 +18,6 @@
 | **License**     | MIT                                                |
 | **Created**     | 2026-06-07 · 13:20 WIB                             |
 | **Finished**    | 2026-06-07 · 14:05 WIB                             |
-| **Duration**    | 45 minutes                                         |
 | **Status**      | Stable · Active Development                        |
 
 ---
@@ -299,7 +298,7 @@ Hide Chrome's default Bookmark Bar to reclaim vertical space:
 
 ### v1.0.0 — 2026-06-07
 
-**Initial Release** · Started 13:20 WIB · Finished 14:05 WIB · Duration 45 minutes
+**Initial Release**
 
 - Built Chrome Extension with Manifest V3
 - Popup: quick launcher (420px) with search, pinned, recent, all bookmarks

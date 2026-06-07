@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Screenshots (not part of extension code)
+screenshots/
+
+# Store assets (not shipped in extension)
+store/
+
+# Dev tools
+*.zip
+*.crx
+*.pem
+
+# Prompt/planning files
+*.md
+!README.md
