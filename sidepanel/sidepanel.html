@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary -->
+  <title>Bookmarks Fluffy</title>
+  <meta name="title" content="Bookmarks Fluffy" />
+  <meta name="description" content="Modern Chrome bookmark manager — fast search, pinned favorites, recent history, and side panel support." />
+  <meta name="keywords" content="bookmark manager, chrome extension, fast search, pinned bookmarks, side panel, productivity" />
+  <meta name="author" content="yudhaniagara" />
+  <meta name="version" content="1.0.0" />
+  <meta name="date" content="2026-06-07" />
+  <meta name="created" content="2026-06-07" />
+  <meta name="license" content="MIT" />
+  <meta name="contact" content="https://www.threads.com/@yudhaniagara" />
+
+  <!-- Chrome Extension -->
+  <meta name="application-name" content="Bookmarks Fluffy" />
+  <meta name="manifest-version" content="3" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="color-scheme" content="dark light" />
+
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span class="header-title">Bookmarks Fluffy</span>
+    <div style="display:flex;gap:4px">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="search">Search</button>
+    <button class="tab-btn" data-tab="pinned">Pinned</button>
+    <button class="tab-btn" data-tab="recent">Recent</button>
+    <button class="tab-btn" data-tab="tree">All</button>
+  </div>
+
+  <!-- Search bar (always visible) -->
+  <div class="search-wrap">
+    <div class="search-inner">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input id="searchInput" type="text" placeholder="Search bookmarks…" autocomplete="off" spellcheck="false" />
+      <button class="search-clear" id="searchClear" title="Clear">✕</button>
+    </div>
+  </div>
+
+  <!-- Panel body -->
+  <div class="panel-body">
+
+    <!-- Tab: Search results -->
+    <div class="tab-panel active" id="tab-search">
+      <div class="result-count" id="resultCount"></div>
+      <div id="searchList"></div>
+      <div class="empty-state" id="searchEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        Start typing to search
+      </div>
+    </div>
+
+    <!-- Tab: Pinned -->
+    <div class="tab-panel" id="tab-pinned">
+      <div class="pinned-grid" id="pinnedGrid"></div>
+      <div class="empty-state" id="pinnedEmpty" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7h1V5H8v2h1z"/>
+        </svg>
+        No pinned bookmarks yet
+      </div>
+    </div>
+
+    <!-- Tab: Recent -->
+    <div class="tab-panel" id="tab-recent">
+      <div id="recentList"></div>
+      <div class="empty-state" id="recentEmpty" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        No recent bookmarks
+      </div>
+    </div>
+
+    <!-- Tab: Tree -->
+    <div class="tab-panel" id="tab-tree">
+      <div id="treeContainer"></div>
+    </div>
+
+  </div>
+
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

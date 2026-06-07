@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background rounded square -->
+  <rect width="128" height="128" rx="28" ry="28" fill="#171a21"/>
+
+  <!-- Bookmark ribbon shape (centered, proportional) -->
+  <path d="M38 22 C38 18.7 40.7 16 44 16 L84 16 C87.3 16 90 18.7 90 22 L90 108 L64 88 L38 108 Z"
+        fill="none" stroke="#4f8cff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Star accent inside bookmark -->
+  <polygon points="64,36 67.5,47 79,47 69.7,53.8 73.2,65 64,58 54.8,65 58.3,53.8 49,47 60.5,47"
+           fill="#4f8cff" opacity="0.9"/>
+</svg>

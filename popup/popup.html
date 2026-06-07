@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary -->
+  <title>Bookmarks Fluffy</title>
+  <meta name="title" content="Bookmarks Fluffy" />
+  <meta name="description" content="Modern Chrome bookmark manager — fast search, pinned favorites, recent history, and side panel support." />
+  <meta name="keywords" content="bookmark manager, chrome extension, fast search, pinned bookmarks, side panel, productivity" />
+  <meta name="author" content="yudhaniagara" />
+  <meta name="version" content="1.0.0" />
+  <meta name="date" content="2026-06-07" />
+  <meta name="created" content="2026-06-07" />
+  <meta name="license" content="MIT" />
+  <meta name="contact" content="https://www.threads.com/@yudhaniagara" />
+
+  <!-- Chrome Extension -->
+  <meta name="application-name" content="Bookmarks Fluffy" />
+  <meta name="manifest-version" content="3" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="color-scheme" content="dark light" />
+
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <svg class="header-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+    </svg>
+    <span class="header-title">Bookmarks Fluffy</span>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <div class="search-inner">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input id="searchInput" type="text" placeholder="Search bookmarks…" autocomplete="off" spellcheck="false" />
+      <span class="search-kbd" id="searchKbd">⌘B</span>
+      <button class="search-clear" id="searchClear" title="Clear">✕</button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Search results (shown when query active) -->
+    <div id="searchResults">
+      <div class="result-count" id="resultCount"></div>
+      <div class="bm-list" id="searchList"></div>
+      <div class="search-empty" id="searchEmpty" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        No bookmarks found
+      </div>
+    </div>
+
+    <!-- Default view -->
+    <div id="defaultView">
+
+      <!-- Pinned -->
+      <div class="section" id="pinnedSection">
+        <div class="section-header">
+          <span class="section-label">Pinned</span>
+        </div>
+        <div class="pinned-list" id="pinnedList">
+          <span class="pinned-empty">Hover a bookmark and click ★ to pin</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Recent -->
+      <div class="section" id="recentSection">
+        <div class="section-header">
+          <span class="section-label">Recent</span>
+          <button class="section-action" id="clearRecent">Clear</button>
+        </div>
+        <div class="bm-list" id="recentList"></div>
+        <div class="search-empty" id="recentEmpty" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          No recent bookmarks
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- All Bookmarks -->
+      <div class="section" id="allSection">
+        <div class="section-header">
+          <span class="section-label">All Bookmarks</span>
+          <span class="section-count" id="allCount"></span>
+        </div>
+        <div class="bm-list" id="allList"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a class="footer-author" href="https://www.threads.com/@yudhaniagara" target="_blank" rel="noopener noreferrer">@yudhaniagara</a>
+    <button class="open-panel-btn" id="openPanel">
+      Open Side Panel
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

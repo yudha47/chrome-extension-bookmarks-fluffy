@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Generate Icons</title>
+  <style>
+    body { font-family: sans-serif; padding: 24px; background: #0f1115; color: #f5f7fa; }
+    canvas { display: none; }
+    button { background: #4f8cff; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+    button:hover { background: #6fa3ff; }
+    .previews { display: flex; gap: 24px; align-items: flex-end; margin: 20px 0; }
+    .preview { text-align: center; }
+    .preview img { display: block; border-radius: 6px; margin-bottom: 6px; background: #272b35; }
+    .label { font-size: 11px; color: #8b92a5; }
+    p { color: #8b92a5; margin-bottom: 16px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h2>Icon Generator — Bookmarks Fluffy</h2>
+  <p>Click the button to generate and download icon16.png, icon48.png, and icon128.png into your assets/ folder.</p>
+
+  <div class="previews" id="previews"></div>
+
+  <button onclick="generateAll()">Download All Icons</button>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const SIZES = [16, 48, 128];
+
+    function drawIcon(ctx, size) {
+      const s = size;
+      const r = s * 0.22; // corner radius
+
+      // Background
+      ctx.clearRect(0, 0, s, s);
+      roundRect(ctx, 0, 0, s, s, r, '#171a21');
+
+      // Bookmark shape
+      const bx = s * 0.30;
+      const bw = s * 0.40;
+      const by = s * 0.14;
+      const bh = s * 0.72;
+      const notch = s * 0.14;
+
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      ctx.lineTo(bx + bw, by);
+      ctx.lineTo(bx + bw, by + bh);
+      ctx.lineTo(bx + bw / 2, by + bh - notch);
+      ctx.lineTo(bx, by + bh);
+      ctx.closePath();
+
+      ctx.strokeStyle = '#4f8cff';
+      ctx.lineWidth = Math.max(1.5, s * 0.045);
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Star (only for 48 and 128)
+      if (size >= 48) {
+        drawStar(ctx, s / 2, by + bh * 0.35, s * 0.095, 5, '#4f8cff', 0.9);
+      } else {
+        // For 16px: just a dot
+        ctx.beginPath();
+        ctx.arc(s / 2, by + bh * 0.32, s * 0.06, 0, Math.PI * 2);
+        ctx.fillStyle = '#4f8cff';
+        ctx.fill();
+      }
+    }
+
+    function roundRect(ctx, x, y, w, h, r, fill) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+    }
+
+    function drawStar(ctx, cx, cy, r, points, color, opacity) {
+      ctx.globalAlpha = opacity;
+      ctx.beginPath();
+      for (let i = 0; i < points * 2; i++) {
+        const angle = (i * Math.PI) / points - Math.PI / 2;
+        const radius = i % 2 === 0 ? r : r * 0.42;
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    function renderPreviews() {
+      const container = document.getElementById('previews');
+      SIZES.forEach((size) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        drawIcon(ctx, size);
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        img.width = Math.max(size, 32);
+        img.height = Math.max(size, 32);
+        img.style.imageRendering = size < 48 ? 'pixelated' : 'auto';
+        const div = document.createElement('div');
+        div.className = 'preview';
+        div.appendChild(img);
+        div.insertAdjacentHTML('beforeend', `<div class="label">icon${size}.png<br>${size}×${size}</div>`);
+        container.appendChild(div);
+      });
+    }
+
+    function generateAll() {
+      const canvas = document.getElementById('canvas');
+      SIZES.forEach((size) => {
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        drawIcon(ctx, size);
+        const link = document.createElement('a');
+        link.download = `icon${size}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    renderPreviews();
+  </script>
+</body>
+</html>
