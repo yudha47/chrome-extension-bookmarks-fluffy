@@ -6,7 +6,7 @@
   "version_name": "1.0.0 — Initial Release",
   "description": "Bookmarks Fluffy — fast search, pinned favorites, side panel.",
   "author": "yudhaniagara <yudhaniagara27@gmail.com>",
-  "homepage_url": "https://www.threads.com/@yudhaniagara",
+  "homepage_url": "https://github.com/yudha47/bookmarks-fluffy",
 
   "permissions": [
     "bookmarks",

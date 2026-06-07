@@ -18,7 +18,8 @@
 | **License**     | MIT                                                |
 | **Created**     | 2026-06-07 · 13:20 WIB                             |
 | **Finished**    | 2026-06-07 · 14:05 WIB                             |
-| **Status**      | Stable · Active Development                        |
+| **Status**      | Stable · Pending Review — Chrome Web Store         |
+| **Submitted**   | 2026-06-07                                         |
 
 ---
 

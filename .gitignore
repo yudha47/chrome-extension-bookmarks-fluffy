@@ -5,7 +5,6 @@
 ._*
 
 # Screenshots (not part of extension code)
-screenshots/
 
 # Store assets (not shipped in extension)
 store/
